@@ -9,11 +9,21 @@ export default function AddSchool() {
     const [city,setCity] = useState('')
     const [state,setState] = useState('')
     const [contact,setContact] = useState('')
-    const [image,setImage] = useState <File>()
+    const [image,setImage] = useState<File>();
     const [email,setEmail] = useState('')
 
     const handleAdd = () => {
-        console.log(name,address,city,state,contact,image,email);
+        const formdata = new FormData();
+
+        formdata.append("name",name);
+        formdata.append("address",address)
+        formdata.append("city",city)
+        formdata.append("state",state)
+        formdata.append("contact",contact)
+        if (image) {
+            formdata.append("image",image)
+        }        
+        formdata.append("email",email)
 
     }
     return (
@@ -111,9 +121,7 @@ export default function AddSchool() {
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="button"
                             onClick={handleAdd}
-                        >
-                            Add School
-                        </button>
+                        >Add School</button>
                     </div>
                 </form>
             </div>
